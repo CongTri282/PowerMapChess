@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "server": "tsx watch server/index.ts",
-    "build:server": "tsc server/index.ts --outDir dist-server --module commonjs --esModuleInterop true --resolveJsonModule true --skipLibCheck true",
+    "build:server": "tsc server/index.ts --outDir dist-server --module esnext --target es2020 --esModuleInterop true --resolveJsonModule true --skipLibCheck true --moduleResolution bundler",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
