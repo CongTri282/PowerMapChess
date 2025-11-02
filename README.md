@@ -128,8 +128,75 @@ Trò chơi này giúp người chơi:
 - **React 19** - UI framework
 - **TypeScript** - Type safety
 - **Vite** - Build tool
+- **Socket.IO** - Real-time multiplayer
+- **Express** - WebSocket server
 - **HTML5 Canvas** - Vẽ capital flows
 - **CSS3** - Styling và animations
+
+## 🚀 Deploy
+
+### Deploy Frontend (Vercel)
+1. Push code lên GitHub
+2. Kết nối repo với Vercel
+3. Thêm environment variable trong Vercel:
+   ```
+   VITE_SERVER_URL=https://your-server-url.com
+   ```
+4. Deploy!
+
+### Deploy Backend (Railway/Render/Fly.io)
+
+**Option 1: Railway** (Khuyến nghị)
+1. Tạo file `Procfile`:
+   ```
+   web: npm run server
+   ```
+2. Đăng ký tài khoản Railway.app
+3. Tạo New Project → Deploy from GitHub
+4. Chọn repo và branch
+5. Railway sẽ tự động detect và deploy
+6. Copy domain WebSocket server (vd: `https://your-app.up.railway.app`)
+7. Cập nhật `VITE_SERVER_URL` trong Vercel
+
+**Option 2: Render.com**
+1. Tạo file `render.yaml`:
+   ```yaml
+   services:
+     - type: web
+       name: powermapchess-server
+       env: node
+       buildCommand: npm install
+       startCommand: npm run server
+   ```
+2. Đăng ký Render.com
+3. New Web Service → Connect repo
+4. Deploy!
+
+**Option 3: Fly.io**
+1. Install Fly CLI: `npm install -g flyctl`
+2. Login: `fly auth login`
+3. Launch: `fly launch`
+4. Deploy: `fly deploy`
+
+### Setup Local Development
+```bash
+# Clone repo
+git clone https://github.com/CongTri282/PowerMapChess.git
+cd PowerMapChess
+
+# Install dependencies
+npm install
+
+# Tạo file .env từ .env.example
+cp .env.example .env
+
+# Chạy cả frontend và backend
+npm run dev:all
+
+# Hoặc chạy riêng:
+npm run dev      # Frontend (port 5173)
+npm run server   # Backend (port 3001)
+```
 
 ## 📝 Tác giả
 

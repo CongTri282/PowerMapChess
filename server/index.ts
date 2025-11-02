@@ -7,10 +7,38 @@ const app = express();
 app.use(cors());
 
 const httpServer = createServer(app);
+
+// Cho phép kết nối từ nhiều origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  /^https:\/\/.*\.vercel\.app$/,  // Tất cả domain Vercel
+  /^https:\/\/.*\.railway\.app$/, // Railway previews
+  process.env.FRONTEND_URL         // Custom domain
+].filter(Boolean);
+
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
-    methods: ['GET', 'POST']
+    origin: (origin, callback) => {
+      // Cho phép requests không có origin (mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      
+      // Check nếu origin nằm trong danh sách cho phép
+      const isAllowed = allowedOrigins.some(allowed => {
+        if (typeof allowed === 'string') return allowed === origin;
+        if (allowed instanceof RegExp) return allowed.test(origin);
+        return false;
+      });
+      
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        console.log('CORS blocked origin:', origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 

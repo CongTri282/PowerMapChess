@@ -73,7 +73,7 @@ interface MultiplayerProviderProps {
 
 export const MultiplayerProvider: React.FC<MultiplayerProviderProps> = ({
   children,
-  serverUrl = 'http://localhost:3001',
+  serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3001',
   onGameStateUpdate,
   onActionPerformed,
   onTurnAdvanced,
