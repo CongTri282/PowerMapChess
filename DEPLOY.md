@@ -15,7 +15,8 @@ Game này gồm 2 phần:
 
 2. **Deploy**
    ```bash
-   # Đã có sẵn Procfile, không cần làm gì thêm
+   # Đã có sẵn nixpacks.toml và railway.json
+   # Railway sẽ tự động detect và dùng config này
    ```
    
    - Truy cập Railway Dashboard
@@ -23,7 +24,8 @@ Game này gồm 2 phần:
    - Chọn **"Deploy from GitHub repo"**
    - Authorize Railway truy cập GitHub
    - Chọn repo `PowerMapChess`
-   - Railway sẽ tự động detect và deploy!
+   - **QUAN TRỌNG**: Railway sẽ dùng `nixpacks.toml` để build
+   - Railway sẽ tự động chạy `npm start` để start server
 
 3. **Cấu hình**
    - Sau khi deploy xong, vào **Settings → Networking**
@@ -174,8 +176,14 @@ echo $VITE_SERVER_URL
 railway logs  # Railway
 # Hoặc xem trên Render Dashboard
 
-# Thường do thiếu dependencies
+# Lỗi "npm: command not found"
+# → Railway cần nixpacks.toml (đã có sẵn)
+# → Push lại code và redeploy
+
+# Lỗi thiếu dependencies
 npm install
+git add .
+git commit -m "Add dependencies"
 git push
 ```
 
