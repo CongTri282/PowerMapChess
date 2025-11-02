@@ -14,18 +14,13 @@ Game này gồm 2 phần:
    - Đăng ký tài khoản tại [railway.app](https://railway.app)
 
 2. **Deploy**
-   ```bash
-   # Đã có sẵn nixpacks.toml và railway.json
-   # Railway sẽ tự động detect và dùng config này
-   ```
-   
    - Truy cập Railway Dashboard
    - Click **"New Project"**
    - Chọn **"Deploy from GitHub repo"**
    - Authorize Railway truy cập GitHub
    - Chọn repo `PowerMapChess`
-   - **QUAN TRỌNG**: Railway sẽ dùng `nixpacks.toml` để build
-   - Railway sẽ tự động chạy `npm start` để start server
+   - **Railway sẽ tự detect Dockerfile và build**
+   - Đợi deploy hoàn tất (~2-3 phút)
 
 3. **Cấu hình**
    - Sau khi deploy xong, vào **Settings → Networking**
@@ -172,19 +167,19 @@ echo $VITE_SERVER_URL
 
 ### Server crash khi deploy
 ```bash
-# Check logs
-railway logs  # Railway
-# Hoặc xem trên Render Dashboard
+# Check logs trong Railway Dashboard → Deployments → View logs
 
-# Lỗi "npm: command not found"
-# → Railway cần nixpacks.toml (đã có sẵn)
-# → Push lại code và redeploy
+# Lỗi "npm: command not found" hoặc "undefined variable"
+# → Railway sẽ dùng Dockerfile (đã có sẵn)
+# → Redeploy: Railway Dashboard → Deployments → Redeploy
 
 # Lỗi thiếu dependencies
-npm install
-git add .
-git commit -m "Add dependencies"
-git push
+# → Check Dockerfile đã copy package*.json chưa
+# → Rebuild image trong Railway
+
+# Port không đúng
+# → Server phải listen trên process.env.PORT || 3001
+# → Railway tự động set PORT environment variable
 ```
 
 ### CORS error
