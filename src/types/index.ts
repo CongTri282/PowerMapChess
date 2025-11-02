@@ -145,6 +145,8 @@ export interface GameState {
   nationalMetrics: NationalMetrics;
   isGameOver: boolean;
   winner?: string;
+  actionsPerTurn: number; // Số lần hành động tối đa mỗi lượt
+  playersActedThisTurn: string[]; // Danh sách ID người chơi đã hành động lượt này
 }
 
 // Phân tích AI

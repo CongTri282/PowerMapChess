@@ -188,20 +188,25 @@ export const Dashboard: React.FC<DashboardProps> = ({
         .dashboard {
           background: white;
           border-radius: 12px;
-          padding: 24px;
+          padding: 20px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          position: relative;
+          z-index: 10;
+          width: 100%;
         }
 
         .dashboard-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 16px;
+          flex-wrap: wrap;
+          gap: 12px;
         }
 
         .dashboard-header h2 {
           margin: 0;
-          font-size: 24px;
+          font-size: 20px;
           color: #1f2937;
         }
 
@@ -212,42 +217,60 @@ export const Dashboard: React.FC<DashboardProps> = ({
           border-radius: 20px;
           font-weight: 600;
           font-size: 14px;
+          white-space: nowrap;
         }
 
         .metrics-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 16px;
-          margin-bottom: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 12px;
+          margin-bottom: 20px;
         }
 
         .metric-card {
-          background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-          border-radius: 12px;
-          padding: 16px;
+          background: white;
+          border: 2px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 14px;
           display: flex;
           gap: 12px;
+          align-items: flex-start;
+          transition: all 0.3s;
+          min-width: 0;
+          overflow: hidden;
+        }
+
+        .metric-card:hover {
+          border-color: #667eea;
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
         }
 
         .metric-icon {
-          font-size: 32px;
+          font-size: 28px;
           line-height: 1;
+          flex-shrink: 0;
         }
 
         .metric-content {
           flex: 1;
+          min-width: 0;
+          overflow: hidden;
         }
 
         .metric-label {
-          font-size: 12px;
+          font-size: 10px;
           color: #6b7280;
           font-weight: 600;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           text-transform: uppercase;
+          letter-spacing: 0.5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .metric-value {
-          font-size: 28px;
+          font-size: 24px;
           font-weight: 700;
           line-height: 1;
           margin-bottom: 8px;
@@ -255,7 +278,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
         .metric-bar {
           height: 6px;
-          background: rgba(0, 0, 0, 0.1);
+          background: #e5e7eb;
           border-radius: 3px;
           overflow: hidden;
         }
@@ -263,13 +286,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
         .metric-fill {
           height: 100%;
           transition: width 0.5s ease, background-color 0.3s;
-          border-radius: 3px;
+          border-radius: 4px;
         }
 
         .metric-description {
-          font-size: 11px;
+          font-size: 12px;
           color: #9ca3af;
-          margin-top: 4px;
+          margin-top: 6px;
         }
 
         .metrics-summary {
@@ -305,13 +328,49 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
         @media (max-width: 1200px) {
           .metrics-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+          }
+          
+          .metric-value {
+            font-size: 22px;
+          }
+          
+          .metric-icon {
+            font-size: 26px;
           }
         }
 
         @media (max-width: 768px) {
           .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          
+          .dashboard-header {
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+          }
+          
+          .dashboard {
+            padding: 16px;
+          }
+          
+          .metric-card {
+            padding: 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .metrics-grid {
             grid-template-columns: 1fr;
+          }
+          
+          .metric-value {
+            font-size: 20px;
+          }
+          
+          .metric-icon {
+            font-size: 24px;
           }
         }
       `}</style>

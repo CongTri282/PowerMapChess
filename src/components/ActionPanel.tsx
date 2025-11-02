@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import type { Player, Action } from '../types';
 import { PlayerType, ActionType, Sector } from '../types';
-import { formatCurrency } from '../utils/playerUtils';
+import { formatCurrency, getSectorName } from '../utils/playerUtils';
 
 interface ActionPanelProps {
   player: Player;
   allPlayers: Player[];
   onPerformAction: (action: Action) => void;
+  hasActed?: boolean; // Đã thực hiện hành động trong lượt này
 }
 
 interface ActionConfig {
@@ -20,7 +21,8 @@ interface ActionConfig {
 export const ActionPanel: React.FC<ActionPanelProps> = ({
   player,
   allPlayers,
-  onPerformAction
+  onPerformAction,
+  hasActed = false
 }) => {
   const [selectedAction, setSelectedAction] = useState<ActionType | null>(null);
   const [targetId, setTargetId] = useState<string>('');
@@ -114,7 +116,7 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
     let desc = `${player.name} thực hiện: ${actionLabel}`;
     if (targetPlayer) desc += ` → ${targetPlayer.name}`;
     if (amount) desc += ` (${formatCurrency(amount)})`;
-    if (selectedSector) desc += ` trong ngành ${selectedSector}`;
+    if (selectedSector) desc += ` trong ngành ${getSectorName(selectedSector)}`;
     
     return desc;
   };
@@ -146,13 +148,13 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
         <div className="action-selection">
           <label>Chọn hành động:</label>
           <div className="action-buttons">
-            {getAvailableActions().map(action => (
+            {getAvailableActions().map((action) => (
               <button
                 key={action.type}
-                className={`action-btn ${selectedAction === action.type ? 'selected' : ''}`}
+                className={`action-btn ${selectedAction === action.type ? "selected" : ""}`}
                 onClick={() => {
                   setSelectedAction(action.type);
-                  setTargetId('');
+                  setTargetId("");
                   setAmount(0);
                   setSelectedSector(null);
                 }}
@@ -165,16 +167,12 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
 
         {selectedAction && (
           <div className="action-params">
-            {(getAvailableActions().find(a => a.type === selectedAction) as ActionConfig)?.needsTarget && (
+            {(getAvailableActions().find((a) => a.type === selectedAction) as ActionConfig)?.needsTarget && (
               <div className="param-group">
                 <label>Chọn đối tượng:</label>
-                <select
-                  value={targetId}
-                  onChange={(e) => setTargetId(e.target.value)}
-                  className="param-select"
-                >
+                <select value={targetId} onChange={(e) => setTargetId(e.target.value)} className="param-select">
                   <option value="">-- Chọn --</option>
-                  {getTargetPlayers().map(p => (
+                  {getTargetPlayers().map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name} ({formatCurrency(p.capital)})
                     </option>
@@ -183,7 +181,7 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
               </div>
             )}
 
-            {(getAvailableActions().find(a => a.type === selectedAction) as ActionConfig)?.needsAmount && (
+            {(getAvailableActions().find((a) => a.type === selectedAction) as ActionConfig)?.needsAmount && (
               <div className="param-group">
                 <label>Số tiền:</label>
                 <input
@@ -197,24 +195,32 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
                   step="100000"
                 />
                 <div className="amount-suggestions">
-                  <button onClick={() => setAmount(player.capital * 0.1)}>10%</button>
-                  <button onClick={() => setAmount(player.capital * 0.25)}>25%</button>
-                  <button onClick={() => setAmount(player.capital * 0.5)}>50%</button>
+                  <button style={{ color: "#000" }} onClick={() => setAmount(player.capital * 0.1)}>
+                    10%
+                  </button>
+                  <button style={{ color: "#000" }} onClick={() => setAmount(player.capital * 0.25)}>
+                    25%
+                  </button>
+                  <button style={{ color: "#000" }} onClick={() => setAmount(player.capital * 0.5)}>
+                    50%
+                  </button>
                 </div>
               </div>
             )}
 
-            {(getAvailableActions().find(a => a.type === selectedAction) as ActionConfig)?.needsSector && (
+            {(getAvailableActions().find((a) => a.type === selectedAction) as ActionConfig)?.needsSector && (
               <div className="param-group">
                 <label>Chọn ngành:</label>
                 <select
-                  value={selectedSector || ''}
+                  value={selectedSector || ""}
                   onChange={(e) => setSelectedSector(e.target.value as Sector)}
                   className="param-select"
                 >
                   <option value="">-- Chọn ngành --</option>
-                  {Object.values(Sector).map(sector => (
-                    <option key={sector} value={sector}>{sector}</option>
+                  {Object.values(Sector).map((sector) => (
+                    <option key={sector} value={sector}>
+                      {getSectorName(sector)}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -222,12 +228,8 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
           </div>
         )}
 
-        <button
-          className="submit-btn"
-          onClick={handleSubmit}
-          disabled={!canSubmit()}
-        >
-          Thực hiện nước đi
+        <button className="submit-btn" onClick={handleSubmit} disabled={!canSubmit() || hasActed}>
+          {hasActed ? "✓ Đã thực hiện hành động lượt này" : "Thực hiện nước đi"}
         </button>
       </div>
 
@@ -237,6 +239,8 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
           border-radius: 12px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           overflow: hidden;
+          position: relative;
+          z-index: 10;
         }
 
         .panel-header {
@@ -332,6 +336,11 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
           border-radius: 6px;
           font-size: 14px;
           background: white;
+          color: #1f2937;
+        }
+
+        .param-input::placeholder {
+          color: #9ca3af;
         }
 
         .param-select:focus,

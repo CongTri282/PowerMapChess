@@ -10,6 +10,24 @@ export const PLAYER_COLORS = {
   GOVERNMENT: '#7c3aed' // Purple
 };
 
+// Tên ngành tiếng Việt
+export const SECTOR_NAMES: Record<Sector, string> = {
+  [Sector.BANKING]: 'Ngân hàng',
+  [Sector.FINTECH]: 'Công nghệ tài chính',
+  [Sector.MANUFACTURING]: 'Sản xuất',
+  [Sector.TECHNOLOGY]: 'Công nghệ',
+  [Sector.ENERGY]: 'Năng lượng',
+  [Sector.AGRICULTURE]: 'Nông nghiệp',
+  [Sector.RETAIL]: 'Bán lẻ',
+  [Sector.REAL_ESTATE]: 'Bất động sản'
+};
+
+// Helper function để lấy tên ngành tiếng Việt
+export function getSectorName(sector?: Sector): string {
+  if (!sector) return '';
+  return SECTOR_NAMES[sector] || sector;
+}
+
 // Tạo player mới
 export function createPlayer(
   id: string,
@@ -30,33 +48,101 @@ export function createPlayer(
     power: 50, // Bắt đầu với power = 50
     sector,
     shares: [],
-    position: generateRandomPosition(),
+    position: { x: 600, y: 350 }, // Default position, will be overridden
     color: PLAYER_COLORS[colorKey] || '#6b7280'
   };
 }
 
-// Tạo vị trí ngẫu nhiên trên bản đồ
-export function generateRandomPosition(): Position {
+// Tạo vị trí ngẫu nhiên trên bản đồ với collision detection
+export function generateRandomPosition(existingPositions: Position[] = [], minDistance: number = 100): Position {
+  const mapWidth = 1100; // Giảm từ 900 để có margin
+  const mapHeight = 600; // Giảm từ 500 để có margin
+  const margin = 80;
+  const maxAttempts = 50;
+  
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const newPos: Position = {
+      x: Math.random() * mapWidth + margin,
+      y: Math.random() * mapHeight + margin
+    };
+    
+    // Kiểm tra khoảng cách với các vị trí đã có
+    let tooClose = false;
+    for (const existingPos of existingPositions) {
+      const distance = Math.sqrt(
+        Math.pow(newPos.x - existingPos.x, 2) + 
+        Math.pow(newPos.y - existingPos.y, 2)
+      );
+      if (distance < minDistance) {
+        tooClose = true;
+        break;
+      }
+    }
+    
+    if (!tooClose) {
+      return newPos;
+    }
+  }
+  
+  // Nếu không tìm được vị trí tốt, trả về vị trí ngẫu nhiên
   return {
-    x: Math.random() * 800 + 100,
-    y: Math.random() * 400 + 100
+    x: Math.random() * mapWidth + margin,
+    y: Math.random() * mapHeight + margin
   };
 }
 
-// Tạo danh sách players mẫu
+// Tạo vị trí theo cluster cho các nhóm player
+export function generateClusteredPosition(
+  playerType: PlayerType,
+  index: number,
+  totalInType: number
+): Position {
+  const mapWidth = 1200;
+  const mapHeight = 700;
+  
+  // Định nghĩa vùng trung tâm cho từng loại
+  const clusterCenters = {
+    [PlayerType.GOVERNMENT]: { x: mapWidth * 0.5, y: mapHeight * 0.3 },
+    [PlayerType.BANK]: { x: mapWidth * 0.3, y: mapHeight * 0.5 },
+    [PlayerType.ENTERPRISE]: { x: mapWidth * 0.7, y: mapHeight * 0.6 }
+  };
+  
+  const center = clusterCenters[playerType] || { x: mapWidth * 0.5, y: mapHeight * 0.5 };
+  
+  // Tạo vị trí theo vòng tròn xung quanh trung tâm
+  const radius = 150 + (Math.floor(index / 6) * 80); // Tăng radius cho mỗi vòng
+  const angleStep = (Math.PI * 2) / Math.min(totalInType, 6);
+  const angle = angleStep * (index % 6) + (Math.random() - 0.5) * 0.3; // Random nhẹ
+  
+  return {
+    x: Math.max(80, Math.min(mapWidth - 80, center.x + Math.cos(angle) * radius)),
+    y: Math.max(80, Math.min(mapHeight - 80, center.y + Math.sin(angle) * radius))
+  };
+}
+
+// Tạo danh sách players mẫu với vị trí phân bố tốt hơn
 export function createSamplePlayers(count: number = 20): Player[] {
   const players: Player[] = [];
+  const positions: Position[] = [];
+  
+  // Đếm số lượng từng loại để tính cluster
+  const typeCounts = {
+    [PlayerType.GOVERNMENT]: 0,
+    [PlayerType.BANK]: 0,
+    [PlayerType.ENTERPRISE]: 0
+  };
   
   // 1 Chính phủ
-  players.push(
-    createPlayer(
-      'gov_1',
-      'Chính phủ Việt Nam',
-      PlayerType.GOVERNMENT,
-      CapitalType.DOMESTIC,
-      100000000
-    )
+  const govPlayer = createPlayer(
+    'gov_1',
+    'Chính phủ Việt Nam',
+    PlayerType.GOVERNMENT,
+    CapitalType.DOMESTIC,
+    100000000
   );
+  govPlayer.position = generateClusteredPosition(PlayerType.GOVERNMENT, typeCounts[PlayerType.GOVERNMENT]++, 1);
+  positions.push(govPlayer.position);
+  players.push(govPlayer);
   
   // 3-4 Ngân hàng/Quỹ nước ngoài
   const foreignBanks = [
@@ -67,15 +153,16 @@ export function createSamplePlayers(count: number = 20): Player[] {
   ];
   
   foreignBanks.slice(0, Math.min(4, Math.floor(count * 0.2))).forEach((bank, i) => {
-    players.push(
-      createPlayer(
-        `bank_foreign_${i + 1}`,
-        bank.name,
-        PlayerType.BANK,
-        CapitalType.FOREIGN,
-        bank.capital
-      )
+    const player = createPlayer(
+      `bank_foreign_${i + 1}`,
+      bank.name,
+      PlayerType.BANK,
+      CapitalType.FOREIGN,
+      bank.capital
     );
+    player.position = generateClusteredPosition(PlayerType.BANK, typeCounts[PlayerType.BANK]++, 7);
+    positions.push(player.position);
+    players.push(player);
   });
   
   // 2-3 Ngân hàng trong nước
@@ -86,15 +173,16 @@ export function createSamplePlayers(count: number = 20): Player[] {
   ];
   
   domesticBanks.slice(0, Math.min(3, Math.floor(count * 0.15))).forEach((bank, i) => {
-    players.push(
-      createPlayer(
-        `bank_domestic_${i + 1}`,
-        bank.name,
-        PlayerType.BANK,
-        CapitalType.DOMESTIC,
-        bank.capital
-      )
+    const player = createPlayer(
+      `bank_domestic_${i + 1}`,
+      bank.name,
+      PlayerType.BANK,
+      CapitalType.DOMESTIC,
+      bank.capital
     );
+    player.position = generateClusteredPosition(PlayerType.BANK, typeCounts[PlayerType.BANK]++, 7);
+    positions.push(player.position);
+    players.push(player);
   });
   
   // 5-7 Doanh nghiệp trong nước
@@ -110,16 +198,17 @@ export function createSamplePlayers(count: number = 20): Player[] {
   
   const domesticEntCount = Math.min(7, Math.floor(count * 0.35));
   domesticEnterprises.slice(0, domesticEntCount).forEach((ent, i) => {
-    players.push(
-      createPlayer(
-        `ent_domestic_${i + 1}`,
-        ent.name,
-        PlayerType.ENTERPRISE,
-        CapitalType.DOMESTIC,
-        ent.capital,
-        ent.sector
-      )
+    const player = createPlayer(
+      `ent_domestic_${i + 1}`,
+      ent.name,
+      PlayerType.ENTERPRISE,
+      CapitalType.DOMESTIC,
+      ent.capital,
+      ent.sector
     );
+    player.position = generateClusteredPosition(PlayerType.ENTERPRISE, typeCounts[PlayerType.ENTERPRISE]++, domesticEntCount + 6);
+    positions.push(player.position);
+    players.push(player);
   });
   
   // 4-6 Doanh nghiệp có vốn ngoại
@@ -134,16 +223,17 @@ export function createSamplePlayers(count: number = 20): Player[] {
   
   const remainingSlots = count - players.length;
   foreignEnterprises.slice(0, remainingSlots).forEach((ent, i) => {
-    players.push(
-      createPlayer(
-        `ent_foreign_${i + 1}`,
-        ent.name,
-        PlayerType.ENTERPRISE,
-        CapitalType.FOREIGN,
-        ent.capital,
-        ent.sector
-      )
+    const player = createPlayer(
+      `ent_foreign_${i + 1}`,
+      ent.name,
+      PlayerType.ENTERPRISE,
+      CapitalType.FOREIGN,
+      ent.capital,
+      ent.sector
     );
+    player.position = generateClusteredPosition(PlayerType.ENTERPRISE, typeCounts[PlayerType.ENTERPRISE]++, domesticEntCount + remainingSlots);
+    positions.push(player.position);
+    players.push(player);
   });
   
   return players;
