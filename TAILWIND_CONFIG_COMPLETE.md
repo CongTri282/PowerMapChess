@@ -7,9 +7,11 @@ Tailwind CSS has been successfully configured for your PowerMapChess project.
 ### What Was Done:
 
 #### 1. Installed Dependencies
+
 ```bash
 npm install -D tailwindcss postcss autoprefixer
 ```
+
 - **tailwindcss** (v4.1.16) - Utility-first CSS framework
 - **postcss** (v8.5.6) - CSS processing
 - **autoprefixer** (v10.4.21) - Vendor prefix support
@@ -17,16 +19,19 @@ npm install -D tailwindcss postcss autoprefixer
 #### 2. Created Configuration Files
 
 **tailwind.config.js**
+
 - Scans all JSX/TSX files for Tailwind classes
 - Extended theme with custom primary & destructive colors
 - Configured custom fonts
 
 **postcss.config.js**
+
 - Integrates Tailwind CSS and Autoprefixer
 
 #### 3. Updated CSS Entry Point
 
 **src/index.css**
+
 - Added `@tailwind` directives (base, components, utilities)
 - Wrapped base styles in `@layer` for proper CSS cascade
 
@@ -58,11 +63,13 @@ Your project can now use Tailwind CSS classes throughout your React components:
 ### Custom Configuration Available:
 
 **Color Palettes:**
+
 - `primary-*` (50-900) - Indigo palette
 - `destructive-*` (50-900) - Red palette
 - Plus all default Tailwind colors (blue, green, gray, etc.)
 
 **Responsive Breakpoints:**
+
 - `sm:` (640px)
 - `md:` (768px)
 - `lg:` (1024px)
@@ -70,6 +77,7 @@ Your project can now use Tailwind CSS classes throughout your React components:
 - `2xl:` (1536px)
 
 **Common Utilities:**
+
 - Spacing: `p-4`, `m-2`, `gap-6`
 - Display: `flex`, `grid`, `block`, `hidden`
 - Colors: `bg-primary-500`, `text-destructive-600`, `border-gray-300`
@@ -94,6 +102,7 @@ npm run dev:all
 ### IDE Support:
 
 Install "Tailwind CSS IntelliSense" VSCode extension for:
+
 - Class name autocomplete
 - Hover documentation
 - Color preview
@@ -103,12 +112,14 @@ Install "Tailwind CSS IntelliSense" VSCode extension for:
 You can gradually migrate from custom CSS to Tailwind classes:
 
 **Before:**
+
 ```tsx
 <div className="card">...</div>
 // Defined in separate .css file
 ```
 
 **After:**
+
 ```tsx
 <div className="p-6 bg-white rounded-lg shadow-md">...</div>
 // Or with @apply for reusable components
