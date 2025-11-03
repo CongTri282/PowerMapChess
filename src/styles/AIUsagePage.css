@@ -18,6 +18,20 @@
   animation: fadeInUp 0.6s ease;
 }
 
+.ai-section.appendix {
+  background-color: #f9fafb;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+}
+
+.transparency-list li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

@@ -1,4 +1,4 @@
-import '../styles/AIUsagePage.css';
+import "../styles/AIUsagePage.css";
 
 export function AIUsagePage() {
   return (
@@ -7,8 +7,33 @@ export function AIUsagePage() {
         <section className="ai-section intro">
           <h1>🤖 Hướng Dẫn Sử Dụng AI</h1>
           <p className="intro-text">
-            Trí tuệ nhân tạo trong Bản đồ Quyền lực Tài chính được sử dụng để phân tích
-            hành động, dự đoán hệ quả, và cung cấp gợi ý chiến lược.
+            Trí tuệ nhân tạo trong Bản đồ Quyền lực Tài chính được sử dụng để
+            phân tích hành động, dự đoán hệ quả, và cung cấp gợi ý chiến lược.
+          </p>
+        </section>
+        <section className="ai-section appendix">
+          <h2>📄AI Usage Minh Bạch</h2>
+          <ul className="transparency-list">
+            <li>
+              <strong>✅ Kiểm chứng thông tin bằng nguồn chính thống:</strong>
+              Tất cả dữ liệu và phân tích AI đều dựa trên nguồn dữ liệu uy tín,
+              được tham khảo và trích dẫn đầy đủ.
+            </li>
+            <li>
+              <strong>✅ Cam kết liêm chính học thuật:</strong>
+              Chúng tôi đảm bảo AI không được sử dụng để tạo nội dung không minh
+              bạch hay sao chép kết quả học thuật.
+            </li>
+            <li>
+              <strong>✅ Ứng dụng sáng tạo rõ ràng:</strong>
+              AI được áp dụng trong mô phỏng, dự đoán xu hướng, và cung cấp gợi
+              ý chiến lược một cách minh bạch và sáng tạo.
+            </li>
+          </ul>
+
+          <p>
+            Việc thêm phụ lục này giúp người đọc hiểu rõ cách AI được sử dụng
+            một cách minh bạch và đáng tin cậy.
           </p>
         </section>
 
@@ -33,9 +58,7 @@ export function AIUsagePage() {
             <div className="role-card">
               <div className="role-icon">🎯</div>
               <h3>Đề Xuất Chiến Lược</h3>
-              <p>
-                AI cung cấp gợi ý dựa trên:
-              </p>
+              <p>AI cung cấp gợi ý dựa trên:</p>
               <ul>
                 <li>Mục tiêu hiện tại của bạn</li>
                 <li>Tình hình tài chính và quyền lực</li>
@@ -47,9 +70,7 @@ export function AIUsagePage() {
             <div className="role-card">
               <div className="role-icon">🔮</div>
               <h3>Dự Đoán Xu Hướng</h3>
-              <p>
-                AI dự đoán sự phát triển trong tương lai:
-              </p>
+              <p>AI dự đoán sự phát triển trong tương lai:</p>
               <ul>
                 <li>Xu hướng của chỉ số quốc gia</li>
                 <li>Khả năng xảy ra sự kiện</li>
@@ -61,9 +82,7 @@ export function AIUsagePage() {
             <div className="role-card">
               <div className="role-icon">⚠️</div>
               <h3>Cảnh Báo Rủi Ro</h3>
-              <p>
-                AI cảnh báo về các rủi ro:
-              </p>
+              <p>AI cảnh báo về các rủi ro:</p>
               <ul>
                 <li>Các tổ chức có thể nhắm mục tiêu vào bạn</li>
                 <li>Sự kiện có thể làm tổn hại lợi ích của bạn</li>
@@ -79,13 +98,13 @@ export function AIUsagePage() {
 
           <div className="tech-detail">
             <h3>Mô Hình Phân Tích</h3>
-            <p>
-              AI sử dụng các mô hình phân tích dựa trên:
-            </p>
+            <p>AI sử dụng các mô hình phân tích dựa trên:</p>
             <div className="tech-list">
               <div className="tech-item">
                 <span className="tech-label">📈 Phân Tích Định Lượng:</span>
-                <p>Tính toán ảnh hưởng bằng số học dựa trên thông số của trò chơi</p>
+                <p>
+                  Tính toán ảnh hưởng bằng số học dựa trên thông số của trò chơi
+                </p>
               </div>
               <div className="tech-item">
                 <span className="tech-label">🎮 Mô Phỏng Trò Chơi:</span>
@@ -108,43 +127,50 @@ export function AIUsagePage() {
 
           <div className="actions-explanation">
             <p>
-              Không giống như người chơi, AI không thực hiện các hành động riêng lẻ.
-              Thay vào đó, AI:
+              Không giống như người chơi, AI không thực hiện các hành động riêng
+              lẻ. Thay vào đó, AI:
             </p>
 
             <div className="action-point">
               <h3>1️⃣ Phân Tích Hành Động Của Bạn</h3>
               <p>
-                Khi bạn thực hiện một hành động, AI tính toán ảnh hưởng đầy đủ của nó
-                đến hệ thống, bao gồm phản ứng của các tổ chức khác.
+                Khi bạn thực hiện một hành động, AI tính toán ảnh hưởng đầy đủ
+                của nó đến hệ thống, bao gồm phản ứng của các tổ chức khác.
               </p>
             </div>
 
             <div className="action-point">
               <h3>2️⃣ Cập Nhật Trạng Thái Hệ Thống</h3>
               <p>
-                AI cập nhật chỉ số quốc gia và quyền lực của các tổ chức dựa trên
-                ảnh hưởng của hành động của bạn.
+                AI cập nhật chỉ số quốc gia và quyền lực của các tổ chức dựa
+                trên ảnh hưởng của hành động của bạn.
               </p>
             </div>
 
             <div className="action-point">
               <h3>3️⃣ Mô Phỏng Phản Ứng</h3>
-              <p>
-                AI mô phỏng cách các tổ chức khác sẽ phản ứng. Ví dụ:
-              </p>
+              <p>AI mô phỏng cách các tổ chức khác sẽ phản ứng. Ví dụ:</p>
               <ul className="nested-list">
-                <li>Nếu bạn là doanh nghiệp và tấn công một ngân hàng, ngân hàng có thể mua lại bạn</li>
-                <li>Nếu bạn là nhà nước và cấm đầu tư nước ngoài, đầu tư có thể giảm</li>
-                <li>Nếu bạn là ngân hàng và mua cổ phần, các ngân hàng khác có thể cạnh tranh</li>
+                <li>
+                  Nếu bạn là doanh nghiệp và tấn công một ngân hàng, ngân hàng
+                  có thể mua lại bạn
+                </li>
+                <li>
+                  Nếu bạn là nhà nước và cấm đầu tư nước ngoài, đầu tư có thể
+                  giảm
+                </li>
+                <li>
+                  Nếu bạn là ngân hàng và mua cổ phần, các ngân hàng khác có thể
+                  cạnh tranh
+                </li>
               </ul>
             </div>
 
             <div className="action-point">
               <h3>4️⃣ Cung Cấp Phân Tích</h3>
               <p>
-                AI cung cấp một phân tích chi tiết về những gì vừa xảy ra và những gì
-                có thể xảy ra tiếp theo.
+                AI cung cấp một phân tích chi tiết về những gì vừa xảy ra và
+                những gì có thể xảy ra tiếp theo.
               </p>
             </div>
           </div>
@@ -173,32 +199,32 @@ export function AIUsagePage() {
             <div className="tip-card">
               <h3>📊 Theo Dõi Chỉ Số</h3>
               <p>
-                Chú ý đến sự thay đổi của các chỉ số quốc gia. Chúng cho biết
-                hệ thống đang phát triển theo chiều hướng nào.
+                Chú ý đến sự thay đổi của các chỉ số quốc gia. Chúng cho biết hệ
+                thống đang phát triển theo chiều hướng nào.
               </p>
             </div>
 
             <div className="tip-card">
               <h3>🎯 Đặt Mục Tiêu Rõ Ràng</h3>
               <p>
-                Xác định mục tiêu của bạn (tăng quyền lực, bảo vệ chủ quyền, v.v.)
-                để AI có thể cung cấp gợi ý phù hợp.
+                Xác định mục tiêu của bạn (tăng quyền lực, bảo vệ chủ quyền,
+                v.v.) để AI có thể cung cấp gợi ý phù hợp.
               </p>
             </div>
 
             <div className="tip-card">
               <h3>🔍 Phân Tích Đối Thủ</h3>
               <p>
-                Sử dụng phân tích AI để hiểu chiến lược của các đối thủ.
-                Điều này sẽ giúp bạn dự đoán được hành động của họ.
+                Sử dụng phân tích AI để hiểu chiến lược của các đối thủ. Điều
+                này sẽ giúp bạn dự đoán được hành động của họ.
               </p>
             </div>
 
             <div className="tip-card">
               <h3>⏸️ Tạm Dừng và Suy Tính</h3>
               <p>
-                Không cần vội vàng. Dành thời gian để suy tính dựa trên phân tích AI
-                trước khi quyết định hành động tiếp theo.
+                Không cần vội vàng. Dành thời gian để suy tính dựa trên phân
+                tích AI trước khi quyết định hành động tiếp theo.
               </p>
             </div>
           </div>
@@ -221,7 +247,10 @@ export function AIUsagePage() {
                 <div className="analysis-item">
                   <span className="label">✅ Ảnh Hưởng Tích Cực:</span>
                   <ul>
-                    <li>Quyền lực của bạn tăng 15% (do giành quyền kiểm soát công ty mới)</li>
+                    <li>
+                      Quyền lực của bạn tăng 15% (do giành quyền kiểm soát công
+                      ty mới)
+                    </li>
                     <li>Chỉ số kiểm soát nội địa tăng 8% (vốn nội địa tăng)</li>
                   </ul>
                 </div>
@@ -229,23 +258,33 @@ export function AIUsagePage() {
                 <div className="analysis-item">
                   <span className="label">⚠️ Rủi Ro:</span>
                   <ul>
-                    <li>Ngân hàng cạnh tranh của bạn có thể cũng muốn đầu tư vào công ty này</li>
-                    <li>Vốn tích tụ của bạn giảm, làm bạn dễ bị tấn công hơn</li>
+                    <li>
+                      Ngân hàng cạnh tranh của bạn có thể cũng muốn đầu tư vào
+                      công ty này
+                    </li>
+                    <li>
+                      Vốn tích tụ của bạn giảm, làm bạn dễ bị tấn công hơn
+                    </li>
                   </ul>
                 </div>
 
                 <div className="analysis-item">
                   <span className="label">🔮 Dự Đoán:</span>
                   <ul>
-                    <li>Nếu công ty phát triển thành công, quyền lực của bạn sẽ tiếp tục tăng</li>
+                    <li>
+                      Nếu công ty phát triển thành công, quyền lực của bạn sẽ
+                      tiếp tục tăng
+                    </li>
                     <li>Nếu công ty thất bại, bạn mất vốn và quyền lực</li>
                   </ul>
                 </div>
 
                 <div className="analysis-item">
                   <span className="label">💡 Gợi Ý:</span>
-                  <p>Giữ một ít vốn dự trữ để ứng phó với bất ngờ. Hãy chuẩn bị
-                    để cạnh tranh với các ngân hàng khác nếu cần.</p>
+                  <p>
+                    Giữ một ít vốn dự trữ để ứng phó với bất ngờ. Hãy chuẩn bị
+                    để cạnh tranh với các ngân hàng khác nếu cần.
+                  </p>
                 </div>
               </div>
             </div>
@@ -256,9 +295,10 @@ export function AIUsagePage() {
           <h2>🎓 Kết Luận</h2>
           <p>
             AI trong Bản đồ Quyền lực Tài chính không phải là một "trợ thủ ảo"
-            giúp bạn làm những việc bạn không thể làm. Thay vào đó, nó là một công cụ
-            phân tích giúp bạn hiểu rõ hơn về hệ quả của các quyết định của mình.
-            Sử dụng AI một cách thông minh, và bạn sẽ trở thành một người chơi xuất sắc.
+            giúp bạn làm những việc bạn không thể làm. Thay vào đó, nó là một
+            công cụ phân tích giúp bạn hiểu rõ hơn về hệ quả của các quyết định
+            của mình. Sử dụng AI một cách thông minh, và bạn sẽ trở thành một
+            người chơi xuất sắc.
           </p>
         </section>
       </div>
