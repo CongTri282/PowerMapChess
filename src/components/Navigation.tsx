@@ -10,8 +10,7 @@ export function Navigation({ currentPage, onPageChange }: NavigationProps) {
     <nav className="navigation">
       <div className="nav-container">
         <div className="nav-brand">
-          <span className="nav-icon">🗺️</span>
-          <span className="nav-title">Bản đồ Quyền lực Tài chính</span>
+          <span className="nav-title">Tư bản tài chính và quyền lực mềm của độc quyền</span>
         </div>
 
         <ul className="nav-menu">
