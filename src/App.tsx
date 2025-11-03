@@ -39,13 +39,13 @@ function App() {
   const handlePerformAction = (action: Action) => {
     // Phân tích trước khi thực hiện
     const analysis = analyzeAction(gameState, action);
-    
+
     // Thực hiện action
     dispatch({ type: 'PERFORM_ACTION', payload: action });
-    
+
     // Hiển thị phân tích
     setCurrentAnalysis(analysis);
-    
+
     // Cập nhật metrics dựa trên analysis
     dispatch({
       type: 'UPDATE_METRICS',
@@ -60,9 +60,9 @@ function App() {
   // Xử lý event option
   const handleEventOption = (optionId: string) => {
     if (!currentEvent) return;
-    
+
     const impacts = calculateEventImpact(currentEvent, optionId);
-    
+
     // Apply impacts (simplified)
     impacts.forEach(impact => {
       if (impact.capitalChange || impact.powerChange) {
@@ -74,7 +74,7 @@ function App() {
         });
       }
     });
-    
+
     setCurrentEvent(null);
   };
 
@@ -100,7 +100,7 @@ function App() {
           <p className="subtitle">
             Mô phỏng tương tác về hệ sinh thái tài chính Việt Nam
           </p>
-          
+
           <div className="welcome-description">
             <p>
               Vào vai các chủ thể trong hệ sinh thái tài chính (doanh nghiệp, ngân hàng/quỹ đầu tư, nhà nước),
@@ -134,7 +134,7 @@ function App() {
                 <li>Quản lý chỉ số quốc gia</li>
               </ul>
             </div>
-            
+
             <div className="info-section">
               <h3>🏦 Vai trò</h3>
               <ul>
@@ -150,14 +150,14 @@ function App() {
   }
 
   // Get current player data (updated from state)
-  const currentPlayer = selectedPlayer 
+  const currentPlayer = selectedPlayer
     ? gameState.players.find(p => p.id === selectedPlayer.id) || selectedPlayer
     : null;
 
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>🗺️ Bản đồ Quyền lực Tài chính</h1>
+      <header className="app-header game-header">
+        <div></div>
         <div className="header-actions">
           <button className="header-btn" onClick={handleNextTurn}>
             ⏭️ Lượt tiếp theo
@@ -175,7 +175,7 @@ function App() {
             currentTurn={gameState.currentTurn}
             maxTurns={gameState.maxTurns}
           />
-          
+
           {currentPlayer && (
             <div className="action-panel-container">
               <ActionPanel

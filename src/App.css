@@ -4,8 +4,8 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,7 +55,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -139,6 +140,10 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-header.game-header {
+  padding: 16px 32px;
 }
 
 .app-header h1 {
@@ -510,8 +515,14 @@ body {
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .game-over-header {
@@ -773,20 +784,20 @@ body {
     grid-template-rows: auto auto;
     gap: 16px;
   }
-  
+
   .bottom-layout {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .center-panel {
     order: 1;
   }
-  
+
   .left-panel {
     order: 2;
   }
-  
+
   .right-panel {
     order: 3;
   }
@@ -796,11 +807,11 @@ body {
   .game-layout {
     padding: 12px;
   }
-  
+
   .welcome-content {
     padding: 32px 24px;
   }
-  
+
   .game-info {
     grid-template-columns: 1fr;
   }
