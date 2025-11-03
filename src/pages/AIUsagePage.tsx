@@ -5,7 +5,7 @@ export function AIUsagePage() {
     <div className="ai-usage-page">
       <div className="ai-usage-container">
         <section className="ai-section intro">
-          <h1>🤖 Hướng Dẫn Sử Dụng AI</h1>
+          <h1>🤖 AI Usage</h1>
           <p className="intro-text">
             Trí tuệ nhân tạo trong Bản đồ Quyền lực Tài chính được sử dụng để
             phân tích hành động, dự đoán hệ quả, và cung cấp gợi ý chiến lược.
