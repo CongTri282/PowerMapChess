@@ -32,9 +32,54 @@ export function AIUsagePage() {
           </ul>
 
           <p>
-            Việc thêm phụ lục này giúp người đọc hiểu rõ cách AI được sử dụng
-            một cách minh bạch và đáng tin cậy.
+            Chúng tôi cam kết sử dụng AI một cách có trách nhiệm, minh bạch, và
+            tuân thủ các nguyên tắc đạo đức trong học thuật.
           </p>
+        </section>
+
+        <section className="ai-section appendix">
+          <h2>Kiểm chứng học thuật bằng nguồn chính thống</h2>
+          <p>
+            Tất cả dữ liệu và phân tích được trình bày trong trang này đều dựa
+            trên các nghiên cứu và báo cáo chính thống, đảm bảo độ tin cậy và
+            minh bạch học thuật:
+          </p>
+
+          <ul className="transparency-list">
+            <li>
+              <strong>Báo cáo World Bank (2021) – Vietnam 2035:</strong> đánh
+              giá triển vọng phát triển kinh tế, chỉ ra vai trò của tài chính và
+              đổi mới sáng tạo.
+            </li>
+            <li>
+              <strong>
+                Tạp chí Cộng Sản (2024) – Sức mạnh mềm của Việt Nam:
+              </strong>
+              phân tích quyền lực mềm trong kinh tế và xã hội, làm cơ sở cho các
+              chiến lược AI.
+            </li>
+            <li>
+              <strong>
+                Nhân Dân (2024) – Định vị Việt Nam trên bản đồ sức mạnh mềm toàn
+                cầu:
+              </strong>{" "}
+              minh chứng cho quyền lực mềm và ảnh hưởng kinh tế.
+            </li>
+            <li>
+              <strong>
+                LuanVan.net.vn – Tiểu luận về chủ nghĩa tư bản độc quyền nhà
+                nước:
+              </strong>{" "}
+              làm rõ biểu hiện và ảnh hưởng của tư bản tài chính trong bối cảnh
+              Việt Nam.
+            </li>
+          </ul>
+          {/* 
+          <p>
+            Việc sử dụng các nguồn chính thống này đảm bảo rằng AI chỉ hỗ trợ
+            phân tích dựa trên dữ liệu thực tiễn và nghiên cứu đã được kiểm
+            chứng, đảm bảo minh bạch và liêm chính học thuật.
+          </p> */}
         </section>
 
         <section className="ai-section">
