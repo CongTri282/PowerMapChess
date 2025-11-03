@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "vite",
     "server": "tsx watch server/index.ts",
-    "server:prod": "tsx server/index.ts",
+    "build:server": "tsc server/index.ts --outDir dist-server --module esnext --target es2020 --esModuleInterop true --resolveJsonModule true --skipLibCheck true --moduleResolution bundler",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "npm run server:prod"
+    "start": "node dist-server/index.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
