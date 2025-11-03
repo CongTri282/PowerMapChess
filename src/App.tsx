@@ -4,7 +4,7 @@ import { ActionPanel } from "./components/ActionPanel";
 import { Dashboard } from "./components/Dashboard";
 import { AnalysisPanel } from "./components/AnalysisPanel";
 import { EventCard } from "./components/EventCard";
-import { AIUsagePage } from "./components/AIUsage";
+// import { AIUsagePage } from "./components/AIUsage";
 import {
   gameReducer,
   initialGameState,
@@ -24,7 +24,7 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState<GameEvent | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [playerCount, setPlayerCount] = useState(20);
-  const [showAIUsage, setShowAIUsage] = useState(false);
+  // const [showAIUsage, setShowAIUsage] = useState(false);
 
   // Khởi tạo game
   const startGame = () => {
@@ -112,11 +112,11 @@ function App() {
     setCurrentEvent(null);
   };
 
-  const handleAIUsage = () => setShowAIUsage(true);
+  // const handleAIUsage = () => setShowAIUsage(true);
 
-  if (showAIUsage) {
-    return <AIUsagePage onClose={() => setShowAIUsage(false)} />;
-  }
+  // if (showAIUsage) {
+  //   return <AIUsagePage onClose={() => setShowAIUsage(false)} />;
+  // }
 
   if (!gameStarted) {
     return (
@@ -194,8 +194,8 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>🗺️ Bản đồ Quyền lực Tài chính</h1>
+      <header className="app-header game-header">
+        <div></div>
         <div className="header-actions">
           <button className="header-btn" onClick={handleNextTurn}>
             ⏭️ Lượt tiếp theo
@@ -203,9 +203,9 @@ function App() {
           <button className="header-btn reset" onClick={handleReset}>
             🔄 Bắt đầu lại
           </button>
-          <button className="header-btn" onClick={handleAIUsage}>
+          {/* <button className="header-btn" onClick={handleAIUsage}>
             🤖 Về AI
-          </button>
+          </button> */}
         </div>
       </header>
 

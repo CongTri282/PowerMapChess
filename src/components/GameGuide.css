@@ -1,0 +1,1177 @@
+/* Game Guide Overlay */
+.guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Guide Modal */
+.guide-modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.4s ease;
+}
+
+.guide-modal.tutorial-mode {
+  max-width: 1100px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-radius: 20px 20px 0 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.guide-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.guide-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Content */
+.guide-content {
+  overflow-y: auto;
+  padding: 30px;
+  flex: 1;
+}
+
+.guide-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.guide-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.guide-content::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.5);
+  border-radius: 4px;
+}
+
+.guide-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
+}
+
+/* Sections */
+.guide-section {
+  margin-bottom: 32px;
+}
+
+.guide-section h3 {
+  font-size: 22px;
+  color: #a5b4fc;
+  margin-bottom: 16px;
+  font-weight: 600;
+  border-left: 4px solid #6366f1;
+  padding-left: 12px;
+}
+
+.guide-section p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* Player Types */
+.player-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.player-type-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.player-type-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.player-type-card.government {
+  border-left: 4px solid #7c3aed;
+}
+
+.player-type-card.bank {
+  border-left: 4px solid #2563eb;
+}
+
+.player-type-card.enterprise {
+  border-left: 4px solid #16a34a;
+}
+
+.player-type-card h4 {
+  margin: 0 0 12px 0;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.player-type-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.player-type-card ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Sectors Grid */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.sector-tag {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e7ff;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.sector-tag:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+  transform: scale(1.05);
+}
+
+/* Gameplay Steps */
+.gameplay-steps {
+  color: #cbd5e1;
+  padding-left: 24px;
+  font-size: 15px;
+}
+
+.gameplay-steps > li {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.gameplay-steps strong {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.gameplay-steps ul {
+  margin-top: 8px;
+  padding-left: 24px;
+}
+
+.gameplay-steps ul li {
+  margin-bottom: 6px;
+}
+
+/* Tips */
+.tips {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tip {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.tip:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
+  transform: translateX(4px);
+}
+
+.tip strong {
+  color: #6ee7b7;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.tip p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Winning Condition */
+.winning-condition {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.winning-condition p {
+  margin: 0 0 8px 0;
+  color: #fef3c7;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.winning-condition .sub-note {
+  color: #cbd5e1;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+/* Footer */
+.guide-footer {
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 20px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.guide-start-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.guide-start-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .guide-modal {
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+
+  .guide-header {
+    padding: 20px;
+  }
+
+  .guide-header h2 {
+    font-size: 22px;
+  }
+
+  .guide-content {
+    padding: 20px;
+  }
+
+  .player-types {
+    grid-template-columns: 1fr;
+  }
+
+  .sectors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .guide-section h3 {
+    font-size: 18px;
+  }
+
+  .gameplay-steps {
+    padding-left: 20px;
+    font-size: 14px;
+  }
+}
+
+/* ===== TUTORIAL MODE STYLES ===== */
+
+/* Tutorial Progress */
+.tutorial-progress {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+  transition: width 0.4s ease;
+  border-radius: 4px;
+}
+
+.progress-text {
+  text-align: center;
+  color: #a5b4fc;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Tutorial Step */
+.tutorial-step {
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tutorial-step h3 {
+  font-size: 24px;
+  color: #e0e7ff;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.tutorial-step h4 {
+  font-size: 18px;
+  color: #a5b4fc;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* Tutorial Image Container */
+.tutorial-image {
+  margin: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Mock Screens */
+.mock-screen {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  min-width: 500px;
+  max-width: 700px;
+}
+
+.mock-header {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mock-content {
+  padding: 30px;
+}
+
+/* Lobby Mock */
+.lobby-mock .mock-input {
+  margin-bottom: 24px;
+}
+
+.lobby-mock .mock-input label {
+  display: block;
+  color: #374151;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.lobby-mock .mock-input input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.mock-buttons {
+  display: grid;
+  gap: 12px;
+}
+
+.mock-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.mock-btn.create {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.mock-btn.join {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.mock-btn.guide {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+/* Room Mock */
+.room-content {
+  background: #f9fafb;
+}
+
+.mock-players {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mock-player-card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.mock-player-card.host {
+  border-color: #fbbf24;
+  background: #fffbeb;
+}
+
+.player-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.player-type-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.ready-btn {
+  padding: 8px 16px;
+  border: 2px solid #10b981;
+  background: white;
+  color: #10b981;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ready-btn.ready {
+  background: #10b981;
+  color: white;
+}
+
+.mock-start-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mock-start-btn.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Game Mock */
+.mock-game-header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 16px 20px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.mock-turn, .mock-role, .mock-status {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.mock-status.waiting {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.mock-game-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.mock-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: #f9fafb;
+}
+
+.mock-metric {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.metric-value.good {
+  color: #10b981;
+}
+
+.metric-value.ok {
+  color: #f59e0b;
+}
+
+.mock-map {
+  position: relative;
+  height: 300px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border-radius: 8px;
+  margin: 16px;
+}
+
+.mock-node {
+  position: absolute;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+}
+
+.mock-node.government {
+  background: #7c3aed;
+  color: white;
+}
+
+.mock-node.bank {
+  background: #2563eb;
+  color: white;
+}
+
+.mock-node.enterprise {
+  background: #16a34a;
+  color: white;
+}
+
+.mock-flow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Action Mock */
+.mock-action-panel {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.mock-action-panel h3 {
+  margin: 0 0 20px 0;
+  color: #111827;
+  font-size: 20px;
+}
+
+.mock-player-info {
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.role-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.role-badge.government {
+  background: #7c3aed;
+}
+
+.mock-action-select, .mock-sector-select {
+  margin-bottom: 16px;
+}
+
+.mock-action-select label, .mock-sector-select label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.action-dropdown, .sector-dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.mock-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.mock-description {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 12px;
+  border-radius: 4px;
+  color: #1e40af;
+  font-size: 14px;
+}
+
+/* Event Mock */
+.mock-event-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.event-header {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.event-icon {
+  font-size: 24px;
+}
+
+.event-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+
+.event-body {
+  padding: 20px;
+}
+
+.event-body p {
+  color: #374151;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.event-impact {
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.event-impact strong {
+  display: block;
+  color: #92400e;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.event-impact ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #78350f;
+  font-size: 13px;
+}
+
+.event-impact ul li {
+  margin-bottom: 4px;
+}
+
+/* Result Mock */
+.mock-result-panel {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.mock-result-panel h3 {
+  text-align: center;
+  color: #111827;
+  margin: 0 0 24px 0;
+  font-size: 24px;
+}
+
+.mock-rankings {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.rank-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.rank-item.gold {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #f59e0b;
+}
+
+.rank-item.silver {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-color: #9ca3af;
+}
+
+.rank-item.bronze {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border-color: #ea580c;
+}
+
+.rank-medal {
+  font-size: 32px;
+}
+
+.rank-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rank-info strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+.rank-role {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.rank-stats {
+  text-align: right;
+  font-size: 13px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.rank-stats div {
+  margin-bottom: 4px;
+}
+
+.mock-final-metrics {
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.mock-final-metrics h4 {
+  margin: 0 0 12px 0;
+  color: #111827;
+  font-size: 16px;
+}
+
+.metric-row {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.metric-row.good {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.metric-row.ok {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Tutorial Steps List */
+.tutorial-steps {
+  margin-top: 24px;
+}
+
+.step-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.step-text {
+  flex: 1;
+}
+
+.step-text strong {
+  display: block;
+  color: #e0e7ff;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.step-text p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Tutorial Note */
+.tutorial-note {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.tutorial-note strong {
+  color: #93c5fd;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* Action Types Grid */
+.action-types-grid {
+  display: grid;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.action-type-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.action-type-card.government-card {
+  border-left: 4px solid #7c3aed;
+}
+
+.action-type-card.bank-card {
+  border-left: 4px solid #2563eb;
+}
+
+.action-type-card.enterprise-card {
+  border-left: 4px solid #16a34a;
+}
+
+.action-type-card h5 {
+  margin: 0 0 12px 0;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.action-type-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.action-type-card ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.action-type-card strong {
+  color: #e0e7ff;
+}
+
+/* Tutorial Footer */
+.tutorial-footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.nav-btn.prev {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-btn.next {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+}
+
+.nav-btn.finish {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Step Dots */
+.step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.dot.completed {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive for Tutorial */
+@media (max-width: 768px) {
+  .guide-modal.tutorial-mode {
+    max-width: 95vw;
+  }
+
+  .mock-screen {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .mock-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .mock-game-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tutorial-footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .step-dots {
+    order: -1;
+  }
+
+  .nav-btn {
+    width: 100%;
+  }
+
+  .action-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rank-item {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+  }
+
+  .rank-stats {
+    grid-column: 2;
+    text-align: left;
+  }
+}
